@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doğum Günün Kutlu Olsun</title>
+<style>
+  body, html {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    background-color: black;
+    color: #0ff;
+  }
+  #startScreen, #videoScreen, #mainContent {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    flex-direction: column;
+  }
+  #videoScreen, #mainContent { display: none; }
+  button {
+    padding: 20px 40px;
+    font-size: 2em;
+    background-color: #0ff;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0ff;
+  }
+  #mainContent h1 {
+    font-size: 3em;
+    text-align: center;
+    margin: 50px 0;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+  }
+  #heart {
+    font-size: 5em;
+    color: red;
+    text-align: center;
+    margin-top: 50px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1s ease;
+    text-shadow: 0 0 20px red, 0 0 40px red;
+    animation: heartbeat 1s infinite alternate;
+    display: none;
+  }
+  @keyframes heartbeat {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1); }
+    100% { transform: scale(0.8); }
+  }
+</style>
+</head>
+<body>
+
+<div id="startScreen">
+  <button id="startBtn">Hazır mısın?</button>
+</div>
+
+<div id="videoScreen">
+  <video id="introVideo" width="80%" autoplay>
+    <source src="video.mp4" type="video/mp4">
+    Tarayıcınız video formatını desteklemiyor.
+  </video>
+</div>
+
+<div id="mainContent">
+  <h1 id="slideText">Kaydır</h1>
+  <div id="heart">❤️</div>
+</div>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const startScreen = document.getElementById('startScreen');
+  const videoScreen = document.getElementById('videoScreen');
+  const mainContent = document.getElementById('mainContent');
+  const introVideo = document.getElementById('introVideo');
+  const slideText = document.getElementById('slideText');
+  const heart = document.getElementById('heart');
+
+  startBtn.addEventListener('click', () => {
+    startScreen.style.display = 'none';
+    videoScreen.style.display = 'flex';
+    introVideo.play();
+  });
+
+  introVideo.addEventListener('ended', () => {
+    videoScreen.style.display = 'none';
+    mainContent.style.display = 'flex';
+  });
+
+  let heartShown = false;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 50) {
+      slideText.style.opacity = 1;
+      slideText.style.transform = 'translateY(0)';
+    }
+    if (!heartShown && scrollY > 150) {
+      heart.style.display = 'block';
+      setTimeout(() => heart.style.opacity = 1, 100);
+      setTimeout(() => heart.style.transform = 'scale(1)', 100);
+      heartShown = true;
+    }
+  });
+</script>
+
+</body>
+</html>
