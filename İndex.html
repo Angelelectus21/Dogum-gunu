@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doğum Günün Kutlu Olsun Sevgilim</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            color: #00aaff;
+            text-align: center;
+        }
+        .glow-text {
+            font-size: 2.4rem;
+            margin-top: 120px;
+            color: #00aaff;
+            text-shadow: 0 0 10px #00aaff, 0 0 20px #0099dd, 0 0 40px #0077bb;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .audio-btn {
+            margin-top: 60px;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid #00aaff;
+            border-radius: 10px;
+            color: #00aaff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-shadow: 0 0 8px #00aaff;
+            transition: 0.3s;
+        }
+        .audio-btn:hover {
+            background: #00aaff22;
+            box-shadow: 0 0 15px #00aaff;
+        }
+        audio {
+            margin-top: 25px;
+            width: 80%;
+        }
+        .footer-msg {
+            margin-top: 70px;
+            font-size: 1.3rem;
+            color: #0088cc;
+            text-shadow: 0 0 10px #006699;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .surprise-btn {
+            margin-top: 40px;
+            padding: 12px 26px;
+            background: transparent;
+            border: 2px solid #0088cc;
+            border-radius: 10px;
+            color: #0088cc;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 8px #0088cc;
+        }
+        .surprise-btn:hover {
+            background: #0088cc22;
+            box-shadow: 0 0 15px #0088cc;
+        }
+        #surprise-text {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            display: none;
+            color: #00aaff;
+            text-shadow: 0 0 10px #0099ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-text">Doğum Günün Kutlu Olsun Sevgilim</div>
+    <button class="audio-btn" onclick="playAudio()">Senden duymak istediğim en güzel ses…</button>
+    <audio id="voiceAudio" controls>
+        <source src="voice.mp3" type="audio/mpeg">
+    </audio>
+    <div class="footer-msg">Ruhum… iyi ki girdin hayatıma.</div>
+    <button class="surprise-btn" onclick="showSurprise()">Bir şey daha var…</button>
+    <div id="surprise-text">Beraber kutlayacağımız çok doğum günü var daha sevgilim…</div>
+    <script>
+        function playAudio() {
+            const audio = document.getElementById('voiceAudio');
+            audio.play();
+        }
+        function showSurprise() {
+            document.getElementById('surprise-text').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
